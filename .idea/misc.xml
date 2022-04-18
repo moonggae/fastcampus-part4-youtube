@@ -3,8 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Choi/Desktop/study/Android/fastcampus/part4/chapter01-youtube/app/src/main/res/drawable/shape_circle.xml" value="0.2555" />
         <entry key="..\:/Users/Choi/Desktop/study/Android/fastcampus/part4/chapter01-youtube/app/src/main/res/layout/activity_main.xml" value="0.1875" />
         <entry key="..\:/Users/Choi/Desktop/study/Android/fastcampus/part4/chapter01-youtube/app/src/main/res/layout/fragment_player.xml" value="0.24895833333333334" />
+        <entry key="..\:/Users/Choi/Desktop/study/Android/fastcampus/part4/chapter01-youtube/app/src/main/res/layout/item_video.xml" value="0.25" />
         <entry key="..\:/Users/Choi/Desktop/study/Android/fastcampus/part4/chapter01-youtube/app/src/main/res/menu/bottom_nav_menu.xml" value="0.25" />
       </map>
     </option>
