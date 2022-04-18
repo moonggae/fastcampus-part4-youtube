@@ -3,6 +3,8 @@ package fastcampus.aop.part3.aop_part4_chapter01
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import androidx.recyclerview.widget.LinearLayoutManager
+import fastcampus.aop.part3.aop_part4_chapter01.adapter.VideoAdapter
 import fastcampus.aop.part3.aop_part4_chapter01.databinding.ActivityMainBinding
 import fastcampus.aop.part3.aop_part4_chapter01.dto.VideoDto
 import fastcampus.aop.part3.aop_part4_chapter01.service.VideoService
@@ -17,6 +19,8 @@ class MainActivity : AppCompatActivity() {
         ActivityMainBinding.inflate(layoutInflater)
     }
 
+    private lateinit var videoAdapter : VideoAdapter
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
@@ -24,6 +28,13 @@ class MainActivity : AppCompatActivity() {
         supportFragmentManager.beginTransaction()
             .replace(binding.fragmentContainer.id, PlayerFragment())
             .commit()
+
+        videoAdapter = VideoAdapter()
+
+        binding.mainRecyclerView.apply {
+            adapter = videoAdapter
+            layoutManager = LinearLayoutManager(context)
+        }
 
         getVideoList()
     }
@@ -42,9 +53,12 @@ class MainActivity : AppCompatActivity() {
                         return
                     }
 
-                    response.body()?.let {
-                        Log.d(TAG, "MainActivity onResponse() - called : it.videos.toString() : ${it.videos.toString()}")
+                    response.body()?.let { videoDto ->
+                        Log.d(TAG, "MainActivity onResponse() - called : it.videos.toString() : ${videoDto.videos.toString()}")
+                        videoAdapter.submitList(videoDto.videos)
                     }
+
+
                 }
 
                 override fun onFailure(call: Call<VideoDto>, t: Throwable) {
