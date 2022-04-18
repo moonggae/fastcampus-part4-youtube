@@ -29,7 +29,11 @@ class MainActivity : AppCompatActivity() {
             .replace(binding.fragmentContainer.id, PlayerFragment())
             .commit()
 
-        videoAdapter = VideoAdapter()
+        videoAdapter = VideoAdapter { sources, title ->
+            supportFragmentManager.fragments.find { it is PlayerFragment }?.let {
+                (it as PlayerFragment).play(sources, title)
+            }
+        }
 
         binding.mainRecyclerView.apply {
             adapter = videoAdapter

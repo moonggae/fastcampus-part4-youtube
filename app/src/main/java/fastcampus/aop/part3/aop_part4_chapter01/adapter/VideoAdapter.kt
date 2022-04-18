@@ -15,7 +15,7 @@ import fastcampus.aop.part3.aop_part4_chapter01.R
 import fastcampus.aop.part3.aop_part4_chapter01.databinding.ItemVideoBinding
 import fastcampus.aop.part3.aop_part4_chapter01.model.VideoModel
 
-class VideoAdapter : ListAdapter<VideoModel, VideoAdapter.ViewHolder>(diffUtil) {
+class VideoAdapter(val callback : (String, String) -> Unit) : ListAdapter<VideoModel, VideoAdapter.ViewHolder>(diffUtil) {
     inner class ViewHolder(val view: View) : RecyclerView.ViewHolder(view) {
         fun bind(videoModel: VideoModel) {
             val titleTextView = view.findViewById<TextView>(R.id.titleTextView)
@@ -28,6 +28,10 @@ class VideoAdapter : ListAdapter<VideoModel, VideoAdapter.ViewHolder>(diffUtil) 
             Glide.with(thumbnailImageView.context)
                 .load(videoModel.thumb)
                 .into(thumbnailImageView)
+
+            view.setOnClickListener {
+                callback(videoModel.sources, videoModel.title)
+            }
         }
     }
 
